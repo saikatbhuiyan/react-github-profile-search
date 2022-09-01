@@ -11,7 +11,7 @@ const Dashboard = () => {
       <Search /> */}
       <Info />
       <User />
-      {/* <Repos /> */}
+      <Repos />
     </Wrapper>
   );
 };
