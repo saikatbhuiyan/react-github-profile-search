@@ -7,11 +7,11 @@ import { GithubContext } from "../context/context";
 const Dashboard = () => {
   return (
     <Wrapper>
-      <Navbar></Navbar>
-      <Search />
+      {/* <Navbar></Navbar>
+      <Search /> */}
       <Info />
       <User />
-      <Repos />
+      {/* <Repos /> */}
     </Wrapper>
   );
 };
@@ -20,7 +20,7 @@ const Wrapper = styled.section`
   min-height: 100vh;
   /* display: grid;
   place-items: center; */
-  background: var(--clr-grey-5);
+  background: var(--clr-grey-1);
 `;
 
 export default Dashboard;

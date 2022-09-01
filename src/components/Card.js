@@ -1,9 +1,48 @@
-import React from 'react';
-import { GithubContext } from '../context/context';
-import styled from 'styled-components';
-import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
+import React from "react";
+import { GithubContext } from "../context/context";
+import styled from "styled-components";
+import { MdBusiness, MdLocationOn, MdLink } from "react-icons/md";
 const Card = () => {
-  return <h2>card component</h2>;
+  const { githubUser } = React.useContext(GithubContext);
+  const {
+    avatar_url,
+    html_url,
+    name,
+    company,
+    blog,
+    bio,
+    location,
+    twitter_username,
+  } = githubUser;
+
+  return (
+    <Wrapper>
+      <header>
+        <div>
+          <h4>{name}</h4>
+          <p>{"@" + twitter_username && twitter_username}</p>
+        </div>
+        <a href={html_url}>follow</a>
+      </header>
+      <p className="bio">{bio}</p>
+      <div className="links">
+        {(
+          <p>
+            <MdBusiness></MdBusiness> {company}
+          </p>
+        ) && company}
+        <p>
+          <MdLocationOn></MdLocationOn> {location || "earth"}
+        </p>
+        {(
+          <a href={`https://${blog}`}>
+            <MdLink></MdLink>
+            {blog}
+          </a>
+        ) && blog}
+      </div>
+    </Wrapper>
+  );
 };
 const Wrapper = styled.article`
   background: var(--clr-white);
@@ -13,7 +52,7 @@ const Wrapper = styled.article`
   border-bottom-right-radius: var(--radius);
   position: relative;
   &::before {
-    content: 'user';
+    content: "user";
     position: absolute;
     top: 0;
     left: 0;
@@ -48,13 +87,15 @@ const Wrapper = styled.article`
       color: var(--clr-primary-5);
       border: 1px solid var(--clr-primary-5);
       padding: 0.25rem 0.75rem;
+      width: 50%;
       border-radius: 1rem;
+      text-align: center;
       text-transform: capitalize;
       letter-spacing: var(--spacing);
       transition: var(--transition);
       cursor: pointer;
       &:hover {
-        background: var(--clr-primary-5);
+        background: var(--clr-primary-1);
         color: var(--clr-white);
       }
     }
