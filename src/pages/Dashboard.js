@@ -1,13 +1,26 @@
-import React from 'react';
-import { Info, Repos, User, Search, Navbar } from '../components';
-import loadingImage from '../images/preloader.gif';
-import { GithubContext } from '../context/context';
+import React from "react";
+import styled from "styled-components";
+import { Info, Repos, User, Search, Navbar } from "../components";
+import loadingImage from "../images/preloader.gif";
+import { GithubContext } from "../context/context";
+
 const Dashboard = () => {
   return (
-    <main>
-      <h2>Dashboard Page</h2>
-    </main>
+    <Wrapper>
+      <Navbar></Navbar>
+      <Search />
+      <Info />
+      <User />
+      <Repos />
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.section`
+  min-height: 100vh;
+  /* display: grid;
+  place-items: center; */
+  background: var(--clr-grey-5);
+`;
 
 export default Dashboard;
