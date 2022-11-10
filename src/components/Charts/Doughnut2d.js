@@ -10,11 +10,9 @@ import FusionCharts from "fusioncharts";
 
 // Include the chart type
 import Chart from "fusioncharts/fusioncharts.charts";
-// Include the theme as fusion
-import FusionTheme from "fusioncharts/themes/fusioncharts.theme.candy";
 
 // Adding the chart and theme as dependency to the core fusioncharts
-ReactFC.fcRoot(FusionCharts, Chart, FusionTheme);
+ReactFC.fcRoot(FusionCharts, Chart);
 
 // STEP 3 - Creating the JSON object to store the chart configurations
 
@@ -46,7 +44,7 @@ const ChartComponent = ({ data }) => {
           "#2caeba, #5D62B5, #FFC533, #F2726F, #8d6e63, #1de9b6, #6E80CA",
         use3DLighting: 0,
         useDataPlotColorForLabels: 0,
-        bgColor: "#6E80CA",
+        bgColor: "#FFFFFF",
         showBorder: 0,
       },
       // Chart Data

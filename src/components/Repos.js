@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { GithubContext } from "../context/context";
-import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from "./Charts";
+import { ExampleChart, Pie, Column, Bar, Doughnut } from "./Charts";
 
 const Repos = () => {
   const { githubRepos } = React.useContext(GithubContext);
@@ -33,15 +33,35 @@ const Repos = () => {
       return b.stars - a.stars;
     })
     .map((item) => {
-      return { ...item, value: item.stars };
+      return { ...item, value: item.stars }; // Override value property with stars
     })
-    .slice(0, 5);
+    .slice(0, 3);
+
+  // stars, forks
+
+  let { stars, forks } = githubRepos.reduce(
+    (total, item) => {
+      const { stargazers_count, name, forks } = item;
+      total.stars[stargazers_count] = { label: name, value: stargazers_count };
+      total.forks[forks] = { label: name, value: forks };
+      return total;
+    },
+    {
+      stars: {},
+      forks: {},
+    }
+  );
+
+  stars = Object.values(stars).slice(-5).reverse();
+  forks = Object.values(forks).slice(-5).reverse();
 
   return (
     <section className="section">
       <Wrapper className="section-center">
-        <Pie3D data={mostUsedLanguage} />
-        <Doughnut2D data={mostPopular} />
+        <Pie data={mostUsedLanguage} />
+        <Column data={stars} />
+        <Doughnut data={mostPopular} />
+        <Bar data={forks} />
       </Wrapper>
     </section>
   );
